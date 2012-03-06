@@ -10,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.arvatosystems.dto.UserDTO;
+import com.arvatosystems.services.UsersService;
+import com.gemstone.gemfire.cache.query.SelectResults;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})
@@ -17,6 +19,17 @@ public class CacheClientTest {
 
 	@Autowired
 	private UsersService cacheClient;
+	
+	
+	@Test
+	public void shouldGetAll(){		
+		SelectResults users = cacheClient.getAll();
+		
+		System.out.println(users);
+		cacheClient.putInCache("testFlo", "{\"firstname\":\"flo\",\"lastname\":\"bar\"}");
+		
+		
+	}
 	
 	@Test
 	public void shouldInsertAndRetreiveUser(){

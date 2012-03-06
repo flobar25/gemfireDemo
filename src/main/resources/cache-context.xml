@@ -11,9 +11,10 @@
 
 	
 	<!-- <gfe:cache /> -->
-	<gfe:cache id="cache-with-xml" properties-ref="props"/>	
+	<gfe:cache id="cache" properties-ref="props" />	
 	<util:properties id="props" location="classpath:gemfire.properties"/>
-	<gfe:replicated-region id="usersRegion" cache-ref="cache-with-xml"/>
+	<gfe:replicated-region id="users" cache-ref="cache" persistent="true"/>
+
 
 	
 </beans>

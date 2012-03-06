@@ -1,6 +1,10 @@
 package com.arvatosystems.dto;
 
-public class UserDTO {
+import com.gemstone.gemfire.pdx.PdxReader;
+import com.gemstone.gemfire.pdx.PdxSerializable;
+import com.gemstone.gemfire.pdx.PdxWriter;
+
+public class UserDTO implements PdxSerializable{
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -30,6 +34,28 @@ public class UserDTO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(getFirstName()).append("/").append(getLastName()).append("/").append(getEmail());
+		return sb.toString();
+	}
+
+
+	@Override
+	public void fromData(PdxReader reader) {
+		 email = reader.readString("email");
+		 email = reader.readString("firstName");
+		 email = reader.readString("lastName");
+	}
+
+
+	@Override
+	public void toData(PdxWriter writer) {
+		writer.writeString("email", email);
+		writer.writeString("firstName", firstName);
+		writer.writeString("lastName", lastName);
 	}
 	
 }

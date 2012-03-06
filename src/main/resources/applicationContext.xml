@@ -18,5 +18,5 @@
 	
 	<import resource="cache-context.xml"/>
 
-	<bean id="usersStorageClient" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="usersRegion"/>
+	<bean id="usersStorageClient" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="users"/>
 </beans>
