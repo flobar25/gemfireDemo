@@ -1,20 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:gfe="http://www.springframework.org/schema/gemfire"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:gfe="http://www.springframework.org/schema/gemfire"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/gemfire http://www.springframework.org/schema/gemfire/spring-gemfire.xsd">
 
 
-	
+
 	<!-- <gfe:cache /> -->
-	<gfe:cache id="cache" properties-ref="props" />	
-	<util:properties id="props" location="classpath:gemfire.properties"/>
-	<gfe:replicated-region id="users" cache-ref="cache" persistent="true"/>
+<!-- <bean id="cache" class="org.springframework.data.gemfire.CacheFactoryBean" 
+              p:pdx-serializer-ref="cacheSerializer"/> -->
 
-
+<!-- <gfe:cache id="cache" properties-ref="props" pdx-persistent="true"
+		pdx-serializer="#{cacheSerializer}" pdx-read-serialized="true"/>
+		
+	<util:properties id="props" location="classpath:gemfire.properties" />
 	
+	<gfe:replicated-region id="users" cache-ref="cache"
+		persistent="true" />
+		
+	<gfe:replicated-region id="twitts" cache-ref="cache"
+		persistent="true" />
+
+	<bean id="cacheSerializer" class="com.arvatosystems.gemfire.SimplePdxSerializer"/> -->
+	
+	<gfe:cache id="cache" properties-ref="props" 
+		pdx-serializer="#{cacheSerializer}" pdx-read-serialized="true"/>
+		
+	<util:properties id="props" location="classpath:gemfire.properties" />
+	
+	<gfe:replicated-region id="users" cache-ref="cache"
+		 />
+		
+	<gfe:replicated-region id="twitts" cache-ref="cache"
+		 />
+
+	<bean id="cacheSerializer" class="com.arvatosystems.gemfire.SimplePdxSerializer"/>
+
+
+
 </beans>

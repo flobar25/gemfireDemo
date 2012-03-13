@@ -18,5 +18,9 @@
 	
 	<import resource="cache-context.xml"/>
 
-	<bean id="usersStorageClient" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="users"/>
+	<bean id="usersCacheClient" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="users"/>
+		
+	
+	<bean id="twitterCacheClient" class="org.springframework.data.gemfire.GemfireTemplate" p:region-ref="twitts" />
+	
 </beans>

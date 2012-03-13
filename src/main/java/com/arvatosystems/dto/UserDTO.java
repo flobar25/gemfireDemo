@@ -9,6 +9,10 @@ public class UserDTO implements PdxSerializable{
 	private String lastName;
 	private String email;
 	
+	public UserDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public UserDTO(String firstName, String lastName, String email) {
 		super();
 		this.firstName = firstName;

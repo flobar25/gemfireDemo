@@ -11,22 +11,22 @@ import com.gemstone.gemfire.cache.query.SelectResults;
 @Component
 public class UsersService {
 
-	@Resource
-	private GemfireTemplate usersStorageClient;
+	@Resource(name="usersCacheClient")
+	private GemfireTemplate usersCacheClient;
 
 	public UserDTO putInCache(String key, UserDTO value){
-		return usersStorageClient.put(key, value);
+		return usersCacheClient.put(key, value);
 	}
 	
 	public String putInCache(String key, String value){
-		return usersStorageClient.put(key, value);
+		return usersCacheClient.put(key, value);
 	}
 	
 	public UserDTO getFromCache(String key){
-		return usersStorageClient.get(key);
+		return usersCacheClient.get(key);
 	}
 	
 	public SelectResults getAll(){
-		return usersStorageClient.query("true");
+		return usersCacheClient.query("true");
 	}
 }
